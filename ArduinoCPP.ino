@@ -1,14 +1,11 @@
 #include "Led.hpp"
+#include "LedStateMachine.hpp"
 
 constexpr uint8_t LED_PIN = 13;
-// constexpr unsigned long TOGGLE_INTERVAL_MS = 500;
-enum class LedState {
-  OFF,
-  ON
-};
+constexpr unsigned long INTERVAL_MS = 500;
 
 Led led(LED_PIN);
-LedState led_state = LedState::OFF;
+LedStateMachine led_fsm(led);
 
 void setup() {
   Serial.begin(9600);
@@ -16,7 +13,6 @@ void setup() {
 
 void loop() {
   static unsigned long last_time = 0;
-  constexpr unsigned long INTERVAL_MS = 1000;
 
   unsigned long now = millis();
   bool timeout_event = false;
@@ -26,20 +22,5 @@ void loop() {
     timeout_event = true;
   }
 
-  updateLedStateMachine(timeout_event);
-}
-
-void updateLedStateMachine(bool timeout_event){
-  if(!timeout_event) return;
-
-  switch (led_state) {
-    case LedState::OFF:
-      led.on();
-      led_state = LedState::ON;
-      break;
-    case LedState::ON:
-      led.off();
-      led_state = LedState::OFF;
-      break;
-  }
+  led_fsm.(timeout_event);
 }
