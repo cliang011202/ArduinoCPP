@@ -1,4 +1,5 @@
 #include "Led.hpp"
+#include "PeriodicTask.hpp"
 // #include "LedStateMachine.hpp"
 
 constexpr uint8_t LED_PIN = 13;
@@ -10,6 +11,7 @@ enum class LedState {
 
 Led led(LED_PIN);
 LedState led_state = LedState::OFF;
+PeriodicTask led_task(1000);
 
 void updateLedStateMachine(bool timeout_event);
 void taskLed();
@@ -20,7 +22,10 @@ void setup() {
 }
 
 void loop() {
-  taskLed();
+  // taskLed();
+  if(led_task.expired()){
+    updateLedStateMachine(true);
+  }
   taskDebug();
 }
 

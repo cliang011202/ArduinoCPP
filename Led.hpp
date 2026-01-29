@@ -9,6 +9,9 @@ public:
 	void off();
 	void toggle();
 
+	Led(const Led&) = delete;
+	Led& operator=(const Led&) = delete;
+
   bool isOn() const;
 
 private:
