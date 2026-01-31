@@ -29,8 +29,7 @@ public:
         return false;//队列满
       }
       head_ = (head_ + 1) % EVENT_QUEUE_SIZE;
-      --count_;
-      
+      --count_;      
     }
     buffer_[tail_] = e;
     tail_ = (tail_ + 1) % EVENT_QUEUE_SIZE;
