@@ -156,10 +156,10 @@ void taskStateMachine() {
 //=====================================
 // Arduino生命周期
 //=====================================
-void setup() {
-  Serial.begin(9600);
-}
-void loop() {
-  taskPollEvent();
-  taskStateMachine();
-}
+// void setup() {
+//   Serial.begin(9600);
+// }
+// void loop() {
+//   taskPollEvent();
+//   taskStateMachine();
+// }
