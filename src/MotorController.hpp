@@ -11,7 +11,7 @@ enum class MotorCmdType {
 struct MotorTarget{
   bool enable;
   uint8_t duty;
-}
+};
 
 struct MotorCommand{
   MotorCmdType type;

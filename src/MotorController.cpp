@@ -41,7 +41,7 @@ void MotorController::taskEntry(void *arg) {
 
 void MotorController::taskLoop(){
   const TickType_t period = 10 / portTICK_PERIOD_MS;
-  TickTyper_t lastWake = xTaskGetTickCount();
+  TickType_t lastWake = xTaskGetTickCount();
   MotorCommand cmd;
 
   while(1) {
